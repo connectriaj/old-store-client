@@ -5,8 +5,7 @@ import { AuthContext } from "../../../components/contexts/AuthProvider";
 
 const SignUp = () => {
   const [error, setError] = useState("");
-  const { createUser, googleLogin } =
-    useContext(AuthContext);
+  const { createUser, googleLogin } = useContext(AuthContext);
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -85,7 +84,7 @@ const SignUp = () => {
                 className="input input-bordered"
               />
               <label className="label">
-                <p className="text-center">
+                <p className="text-center mt-3">
                   <small>
                     Already have an account?{" "}
                     <Link

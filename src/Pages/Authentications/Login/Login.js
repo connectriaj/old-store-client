@@ -10,7 +10,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const form = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -40,7 +40,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         setError("");
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
       })
       .catch((error) => console.error(error));
   };
@@ -77,8 +77,12 @@ const Login = () => {
                 required
                 className="input input-bordered"
               />
+
+              <p className="text-center">
+                <small className="text-red-600">{error}</small>
+              </p>
               <label className="label">
-                <p>
+                <p className="mt-3">
                   <small>
                     New to Old Store?{" "}
                     <Link
