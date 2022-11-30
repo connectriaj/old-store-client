@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../components/contexts/AuthProvider";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
   const menuItems = (
     <React.Fragment>
       <li>
@@ -20,9 +24,6 @@ const Navbar = () => {
       </li>
       <li>
         <Link to="/login">Login</Link>
-      </li>
-      <li>
-        <Link to="/signup">Sign Up</Link>
       </li>
     </React.Fragment>
   );
@@ -61,6 +62,32 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">{menuItems}</ul>
+          <ul className="menu menu-horizontal p-0">
+            {user?.uid ? (
+              <li>
+                <Link onClick={logOut}>Logout</Link>
+              </li>
+            ) : (
+              <li>
+                <Link to="/signup">Sign Up</Link>
+              </li>
+            )}
+            {user?.photoURL ? (
+              <li>
+                <div className="avatar">
+                  <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img src={user?.photoURL} alt="user" />
+                  </div>
+                </div>
+              </li>
+            ) : (
+              <li>
+                <Link to="/">
+                  <FaUser></FaUser>
+                </Link>
+              </li>
+            )}
+          </ul>
         </div>
       </div>
     </div>
