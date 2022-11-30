@@ -6,17 +6,18 @@ const Footer = () => {
     <section className="lg:mt-20 bg-slate-700  lg:py-10 text-white rounded">
       <footer className="footer footer-center p-10">
         <div className="grid grid-flow-col gap-4">
-          <Link to="" className="link link-hover">
+          <Link to="/" className="link link-hover">
+            Home
+          </Link>
+          <Link to="/about" className="link link-hover">
             About us
           </Link>
-          <Link to="" className="link link-hover">
-            Contact
+
+          <Link to="/blog" className="link link-hover">
+            Blog
           </Link>
-          <Link to="" className="link link-hover">
-            Jobs
-          </Link>
-          <Link to="" className="link link-hover">
-            Press kit
+          <Link to="/categories" className="link link-hover">
+            Categories
           </Link>
         </div>
         <div>
@@ -57,7 +58,7 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <p>Copyright © 2022 - All right reserved by ACME Industries Ltd</p>
+          <p>Copyright © 2025 | All right reserved by Old Store</p>
         </div>
       </footer>
     </section>
