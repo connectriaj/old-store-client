@@ -1,9 +1,52 @@
-import React from "react";
-import { Form, Link } from "react-router-dom";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext, useState } from "react";
+import { Form, Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../components/contexts/AuthProvider";
 
 const Login = () => {
+  const [error, setError] = useState("");
+  const { loginUser, googleLogin } = useContext(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const form = location.state?.from?.pathname || "/";
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    loginUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        setError("");
+        //   navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
+    form.reset();
+  };
+
+  const googleProvider = new GoogleAuthProvider();
+  const handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setError("");
+        // navigate(from, { replace: true });
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
-    <Form className="hero">
+    <Form onSubmit={handleLogin} className="hero">
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold lg:mt-20 lg:mb-10">Please Login</h1>
@@ -57,7 +100,11 @@ const Login = () => {
             <p className="text-center">
               <small>
                 Or using Login{" "}
-                <Link to="" className="underline text-red-700">
+                <Link
+                  to=""
+                  onClick={handleGoogleLogin}
+                  className="underline text-red-700"
+                >
                   Google
                 </Link>{" "}
               </small>

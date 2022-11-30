@@ -5,7 +5,8 @@ import { AuthContext } from "../../../components/contexts/AuthProvider";
 
 const SignUp = () => {
   const [error, setError] = useState("");
-  const { createUser, googleLogin } = useContext(AuthContext);
+  const { createUser, googleLogin } =
+    useContext(AuthContext);
 
   const handleRegister = (event) => {
     event.preventDefault();
