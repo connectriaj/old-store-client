@@ -5,7 +5,8 @@ import { AuthContext } from "../../../components/contexts/AuthProvider";
 
 const SignUp = () => {
   const [error, setError] = useState("");
-  const { createUser, googleLogin } = useContext(AuthContext);
+  const { createUser, googleLogin, updateUserProfile } =
+    useContext(AuthContext);
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -18,9 +19,19 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        handleUpdateUserProfile(name);
       })
       .catch((error) => console.error(error));
     form.reset();
+  };
+
+  const handleUpdateUserProfile = (name) => {
+    const profile = {
+      displayName: name,
+    };
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((error) => console.error(error));
   };
 
   // google provider login
@@ -83,6 +94,19 @@ const SignUp = () => {
                 required
                 className="input input-bordered"
               />
+
+              <div className="form-control mt-4 lg:ml-2">
+                <div className="input-group">
+                  <select className="select select-ghost">
+                    <option disabled selected>
+                      User Type
+                    </option>
+                    <option>Buyer</option>
+                    <option>Seller</option>
+                  </select>
+                </div>
+              </div>
+
               <label className="label">
                 <p className="text-center mt-3">
                   <small>
