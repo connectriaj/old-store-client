@@ -54,9 +54,21 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               {menuItems}
+              {user?.uid ? (
+                <li>
+                  <Link onClick={logOut}>Logout</Link>
+                </li>
+              ) : (
+                <li>
+                  <Link to="/signup">Sign Up</Link>
+                </li>
+              )}
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl">
+          <Link
+            to="/"
+            className="btn btn-ghost normal-case text-2xl font-bold text-sky-600"
+          >
             Old Store
           </Link>
         </div>
