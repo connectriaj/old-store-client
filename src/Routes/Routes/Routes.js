@@ -5,6 +5,9 @@ import Login from "../../Pages/Authentications/Login/Login";
 import SignUp from "../../Pages/Authentications/SignUp/SignUp";
 import Blog from "../../Pages/Blog/Blog";
 import Categories from "../../Pages/Categories/Categories";
+import CatOne from "../../Pages/Categories/CatOne/CatOne";
+import CatThree from "../../Pages/Categories/CatThree/CatThree";
+import CatTwo from "../../Pages/Categories/CatTwo/CatTwo";
 import Home from "../../Pages/Home/Home/Home";
 
 export const router = createBrowserRouter([
@@ -35,6 +38,18 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/cat1",
+        element: <CatOne></CatOne>,
+      },
+      {
+        path: "cat2",
+        element: <CatTwo></CatTwo>,
+      },
+      {
+        path: "cat3",
+        element: <CatThree></CatThree>,
       },
     ],
   },
