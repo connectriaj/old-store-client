@@ -9,6 +9,7 @@ import CatOne from "../../Pages/Categories/CatOne/CatOne";
 import CatThree from "../../Pages/Categories/CatThree/CatThree";
 import CatTwo from "../../Pages/Categories/CatTwo/CatTwo";
 import Home from "../../Pages/Home/Home/Home";
+import Products from "../../Pages/Products/Products";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/products",
+        element: <Products></Products>,
+        loader: () => fetch(`http://localhost:5000/products`),
       },
       {
         path: "/cat1",
