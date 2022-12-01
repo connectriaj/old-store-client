@@ -13,7 +13,7 @@ const Categories = () => {
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title lg:text-3xl lg:mb-4">Old iphone</h2>
+            <h2 className="card-title lg:text-3xl lg:mb-4">iphone collection</h2>
             <p>
               Explore the long line of iPhones through the years, including the
               leaps and changes between models, as well as predictions on what

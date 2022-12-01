@@ -24,7 +24,7 @@ const Login = () => {
         console.log(user);
         form.reset();
         setError("");
-        //   navigate(from, { replace: true });
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -49,7 +49,9 @@ const Login = () => {
     <Form onSubmit={handleLogin} className="hero">
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
-          <h1 className="lg:text-5xl text-xl font-bold lg:mt-20 lg:mb-10">Please Login</h1>
+          <h1 className="lg:text-5xl text-xl font-bold lg:mt-20 lg:mb-10">
+            Please Login
+          </h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl">
           <div className="card-body">

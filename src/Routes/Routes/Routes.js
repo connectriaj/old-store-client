@@ -10,6 +10,7 @@ import CatThree from "../../Pages/Categories/CatThree/CatThree";
 import CatTwo from "../../Pages/Categories/CatTwo/CatTwo";
 import Home from "../../Pages/Home/Home/Home";
 import Products from "../../Pages/Products/Products";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -47,15 +48,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "/cat1",
-        element: <CatOne></CatOne>,
+        element: (
+          <PrivateRoute>
+            <CatOne></CatOne>
+          </PrivateRoute>
+        ),
       },
       {
         path: "cat2",
-        element: <CatTwo></CatTwo>,
+        element: (
+          <PrivateRoute>
+            <CatTwo></CatTwo>
+          </PrivateRoute>
+        ),
       },
       {
         path: "cat3",
-        element: <CatThree></CatThree>,
+        element: (
+          <PrivateRoute>
+            <CatThree></CatThree>
+          </PrivateRoute>
+        ),
       },
     ],
   },
