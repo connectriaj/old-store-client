@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../components/contexts/AuthProvider";
 import BookingModal from "../BookingModal/BookingModal";
 
 const Products = () => {
+  const { user } = useContext(AuthContext);
   const products = useLoaderData();
-  const [booking, setBooking] = useState(null);
+    const [booking, setBooking] = useState(null);
+    
+   
 
   return (
     <section className="mt-20">
@@ -26,13 +30,24 @@ const Products = () => {
                 <p>Seller Name: {product.seller_name}</p>
                 <div className="card-actions justify-start mt-10">
                   {/* The button to open modal */}
-                  <label
-                    onClick={() => setBooking(product)}
-                    htmlFor="booking-modal"
-                    className="btn btn-primary  text-white"
-                  >
-                    Buy Now
-                  </label>
+                  {user?.email ? (
+                    <label
+                      onClick={() => setBooking(product)}
+                      htmlFor="booking-modal"
+                      className="btn btn-primary  text-white"
+                    >
+                      Buy Now
+                    </label>
+                  ) : (
+                    <label
+                      onClick={() => setBooking(product)}
+                      htmlFor="booking-modal"
+                      className="btn btn-primary  text-white"
+                      disabled
+                    >
+                      Login First
+                    </label>
+                  )}
                 </div>
               </div>
             </div>

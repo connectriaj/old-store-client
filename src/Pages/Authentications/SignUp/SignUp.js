@@ -4,6 +4,7 @@ import { Form, Link } from "react-router-dom";
 import { AuthContext } from "../../../components/contexts/AuthProvider";
 
 const SignUp = () => {
+  const { user } = useContext(AuthContext);
   const [error, setError] = useState("");
   const { createUser, googleLogin, updateUserProfile } =
     useContext(AuthContext);
@@ -14,6 +15,25 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const userType = form.userType.value;
+
+    const user = {
+      userName: name,
+      userEmail: email,
+      userPassword: password,
+      userType: userType,
+    };
+
+    fetch(`http://localhost:5000/users`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
 
     createUser(email, password, name)
       .then((result) => {
@@ -50,7 +70,7 @@ const SignUp = () => {
   };
 
   return (
-    <Form onSubmit={handleRegister} className="hero">
+    <form onSubmit={handleRegister} className="hero">
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold lg:mt-20 lg:mb-10">
@@ -97,12 +117,12 @@ const SignUp = () => {
 
               <div className="form-control mt-4 lg:ml-2">
                 <div className="input-group">
-                  <select className="select select-ghost">
+                  <select name="userType" className="select select-ghost">
                     <option disabled selected>
                       User Type
                     </option>
-                    <option>Buyer</option>
-                    <option>Seller</option>
+                    <option value="buyer">Buyer</option>
+                    <option value="seller">Seller</option>
                   </select>
                 </div>
               </div>
@@ -142,7 +162,7 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-    </Form>
+    </form>
   );
 };
 

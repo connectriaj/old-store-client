@@ -2,14 +2,55 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../components/contexts/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Form } from "react-router-dom";
 
 const BookingModal = ({ booking }) => {
   const { user } = useContext(AuthContext);
-  const { title, resale_price } = booking;
+  const {
+    _id,
+    title,
+    resale_price,
+    seller_name,
+    seller_phone,
+    seller_email,
+    description,
+    product_condition,
+    years_of_use,
+  } = booking;
 
-  const diffToast = () => {
-    toast("The item is Booked!");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const phone = form.phone.value;
+    const location = form.location.value;
+
+    console.log(phone, location);
+
+    const order = {
+      phone,
+      location,
+      id: _id,
+      product_title: title,
+      resale_price: resale_price,
+      years_of_use: years_of_use,
+      seller_name: seller_name,
+      seller_phone: seller_phone,
+      seller_email: seller_email,
+      description: description,
+      product_condition: product_condition,
+    };
+
+    fetch(`http://localhost:5000/orders`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
+
+    form.reset();
   };
 
   return (
@@ -31,7 +72,7 @@ const BookingModal = ({ booking }) => {
             Price: <span className="text-green-600">{resale_price}</span> BDT
           </h5>
 
-          <Form>
+          <form onSubmit={handleSubmit}>
             {/* phone number form  */}
             <div className="form-control py-4">
               <label className="label">
@@ -43,6 +84,7 @@ const BookingModal = ({ booking }) => {
                 type="phone"
                 placeholder="Phone"
                 className="input input-bordered "
+                name="phone"
                 required
               />
             </div>
@@ -55,24 +97,28 @@ const BookingModal = ({ booking }) => {
               <input
                 type="text"
                 placeholder="Location"
-                className="input input-bordered "
+                className="input input-bordered"
+                name="location"
                 required
               />
             </div>
-            <button
-              onClick={diffToast}
-              className="btn btn-primary text-white w-full my-2"
-            >
-              Submit
-            </button>
-          </Form>
+            {user.email ? (
+              <button className="btn btn-primary text-white w-full my-2">
+                Submit
+              </button>
+            ) : (
+              <button className="btn btn-primary text-white w-full my-2 disabled">
+                Submit
+              </button>
+            )}
+          </form>
         </div>
       </div>
       <ToastContainer
         position="top-center"
         autoClose={3000}
         hideProgressBar
-        newestOnTop={true}
+        newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss

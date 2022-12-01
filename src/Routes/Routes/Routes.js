@@ -10,6 +10,7 @@ import CatThree from "../../Pages/Categories/CatThree/CatThree";
 import CatTwo from "../../Pages/Categories/CatTwo/CatTwo";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import Home from "../../Pages/Home/Home/Home";
+import OrderForm from "../../Pages/OrderForm/OrderForm";
 import Products from "../../Pages/Products/Products";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -27,8 +28,8 @@ export const router = createBrowserRouter([
         element: <Categories></Categories>,
       },
       {
-        path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        path: "/orderForm",
+        element: <OrderForm></OrderForm>,
       },
       {
         path: "/blog",
@@ -79,5 +80,14 @@ export const router = createBrowserRouter([
         loader: () => fetch(`http://localhost:5000/product/3`),
       },
     ],
+  },
+  {
+    path: "/dashboard",
+      element: <Dashboard></Dashboard>,
+      children: [
+          {
+            
+        }
+    ]
   },
 ]);
