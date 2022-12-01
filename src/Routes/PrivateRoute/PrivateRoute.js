@@ -8,10 +8,16 @@ const PrivateRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <button type="button" class="bg-indigo-500 ..." disabled>
-        <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24"></svg>
-        Loading...
-      </button>
+      <div className="flex justify-center items-center my-10">
+        <button
+          type="button"
+          class="bg-slate-600 mt-00 text-white px-10 pb-4 rounded-lg shadow-lg"
+          disabled
+        >
+          <svg class="animate-spin h-5 w-5 mr-3 " viewBox="0 0 24 24"></svg>
+          Loading...
+        </button>
+      </div>
     );
   }
 

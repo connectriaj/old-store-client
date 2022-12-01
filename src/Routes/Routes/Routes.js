@@ -8,6 +8,7 @@ import Categories from "../../Pages/Categories/Categories";
 import CatOne from "../../Pages/Categories/CatOne/CatOne";
 import CatThree from "../../Pages/Categories/CatThree/CatThree";
 import CatTwo from "../../Pages/Categories/CatTwo/CatTwo";
+import Dashboard from "../../Pages/Dashboard/Dashboard";
 import Home from "../../Pages/Home/Home/Home";
 import Products from "../../Pages/Products/Products";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/categories",
         element: <Categories></Categories>,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
       },
       {
         path: "/blog",
@@ -50,9 +55,10 @@ export const router = createBrowserRouter([
         path: "/cat1",
         element: (
           <PrivateRoute>
-            <CatOne></CatOne>
+            <CatOne></CatOne>,
           </PrivateRoute>
         ),
+        loader: () => fetch(`http://localhost:5000/product/1`),
       },
       {
         path: "cat2",
@@ -61,6 +67,7 @@ export const router = createBrowserRouter([
             <CatTwo></CatTwo>
           </PrivateRoute>
         ),
+        loader: () => fetch(`http://localhost:5000/product/2`),
       },
       {
         path: "cat3",
@@ -69,6 +76,7 @@ export const router = createBrowserRouter([
             <CatThree></CatThree>
           </PrivateRoute>
         ),
+        loader: () => fetch(`http://localhost:5000/product/3`),
       },
     ],
   },
