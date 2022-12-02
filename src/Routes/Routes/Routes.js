@@ -9,8 +9,9 @@ import Categories from "../../Pages/Categories/Categories";
 import CatOne from "../../Pages/Categories/CatOne/CatOne";
 import CatThree from "../../Pages/Categories/CatThree/CatThree";
 import CatTwo from "../../Pages/Categories/CatTwo/CatTwo";
-import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import MyWishList from "../../Pages/Dashboard/Dashboard/MyWishList/MyWishList";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
+import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home/Home";
 import OrderForm from "../../Pages/OrderForm/OrderForm";
 import Products from "../../Pages/Products/Products";
@@ -28,10 +29,6 @@ export const router = createBrowserRouter([
       {
         path: "/categories",
         element: <Categories></Categories>,
-      },
-      {
-        path: "/orderForm",
-        element: <OrderForm></OrderForm>,
       },
       {
         path: "/blog",
@@ -94,6 +91,19 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "/dashboard/orderForm",
+        element: <OrderForm></OrderForm>,
+        loader: () => fetch(`http://localhost:5000/products`),
+      },
+      {
+        path: "/dashboard/myWishList",
+        element: <MyWishList></MyWishList>,
+      },
+      {
+        path: "/dashboard/myProducts",
+        element: <MyProducts></MyProducts>,
       },
     ],
   },

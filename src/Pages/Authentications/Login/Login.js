@@ -1,6 +1,7 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { Form, Link, useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import { AuthContext } from "../../../components/contexts/AuthProvider";
 
 const Login = () => {
@@ -21,7 +22,7 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        toast("User login successfully!");
         form.reset();
         setError("");
         navigate(from, { replace: true });
@@ -38,6 +39,7 @@ const Login = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
+        toast("User login successfully!");
         console.log(user);
         setError("");
         navigate(from, { replace: true });
@@ -118,6 +120,18 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      ></ToastContainer>
     </Form>
   );
 };

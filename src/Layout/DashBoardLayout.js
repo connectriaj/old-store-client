@@ -17,16 +17,41 @@ const DashBoardLayout = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+          <ul className="menu p-4 w-80 bg-base-100 text-base-content lg:mt-24">
             {/* <!-- Sidebar content here --> */}
             <li>
-              <Link to="">My Orders</Link>
+              <Link to="/dashboard" className="text-primary font-bold">
+                My Orders
+              </Link>
             </li>
             <li>
-              <Link to="">My Orders</Link>
+              <Link
+                to="/dashboard/myWishList"
+                className="text-primary font-bold"
+              >
+                My Wishlist
+              </Link>
             </li>
             <li>
-              <Link to="">My Orders</Link>
+              <Link
+                to="/dashboard/myProducts"
+                className="text-primary font-bold"
+              >
+                My Products
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard/orderForm"
+                className="text-primary font-bold"
+              >
+                Add a product
+              </Link>
+            </li>
+            <li>
+              <Link to="" className="text-primary font-bold">
+                My Advertise
+              </Link>
             </li>
           </ul>
         </div>

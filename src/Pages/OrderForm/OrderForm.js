@@ -1,19 +1,57 @@
-import React from "react";
+import { data } from "autoprefixer";
+import React, { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { AuthContext } from "../../components/contexts/AuthProvider";
 
 const OrderForm = () => {
+  const { user } = useContext(AuthContext);
+  const { _id, title, price } = useLoaderData();
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
-    const price = form.price.value;
     const location = form.location.value;
-    const category = form.category.value;
+    const email = form.email.value;
+    const price = form.price.value;
     const year = form.year.value;
     const condition = form.condition.value;
+    const message = form.message.value;
+    const time = form.time.value;
+    const phone = form.phone.value;
+
+    const addProducts = {
+      title: name,
+      seller_name: user?.displayName,
+      location,
+      resale_price: price,
+      years_of_use: year,
+      product_condition: condition,
+      seller_email: email,
+      description: message,
+      post_time: time,
+      seller_phone: phone,
+    };
+    fetch(`http://localhost:5000/products`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addProducts),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          form.reset();
+          toast("Product added successfully!");
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
-    <div>
+    <section>
       <h1 className="text-center lg:text-4xl lg:underline mt-16">
         <span className="text-primary font-bold">Please</span> fill up the form
       </h1>
@@ -36,13 +74,14 @@ const OrderForm = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Price</span>
+              <span className="label-text">Email</span>
             </label>
             <input
               type="text"
-              placeholder="price"
+              placeholder={user?.email}
               className="input input-bordered"
-              name="price"
+              name="email"
+              readOnly
               required
             />
           </div>
@@ -60,13 +99,13 @@ const OrderForm = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Category</span>
+              <span className="label-text">Price</span>
             </label>
             <input
               type="text"
-              placeholder="category"
+              placeholder="price"
               className="input input-bordered"
-              name="category"
+              name="price"
               required
             />
           </div>
@@ -94,11 +133,36 @@ const OrderForm = () => {
               required
             />
           </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Post time</span>
+            </label>
+            <input
+              type="text"
+              placeholder="enter date"
+              className="input input-bordered"
+              name="time"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Seller Phone</span>
+            </label>
+            <input
+              type="text"
+              placeholder="phone"
+              className="input input-bordered"
+              name="phone"
+              required
+            />
+          </div>
         </div>
         <div className="grid mt-10">
           <textarea
             className="textarea textarea-info"
             placeholder="Product Description (optional)"
+            name="message"
           ></textarea>
         </div>
 
@@ -106,7 +170,19 @@ const OrderForm = () => {
           Submit
         </button>
       </form>
-    </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      ></ToastContainer>
+    </section>
   );
 };
 
