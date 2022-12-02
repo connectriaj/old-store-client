@@ -15,6 +15,7 @@ const BookingModal = ({ booking }) => {
     description,
     product_condition,
     years_of_use,
+    post_time,
   } = booking;
 
   const handleSubmit = (event) => {
@@ -29,12 +30,13 @@ const BookingModal = ({ booking }) => {
       phone,
       location,
       id: _id,
-      product_title: title,
-      resale_price: resale_price,
+      title: title,
+      price: resale_price,
       years_of_use: years_of_use,
-      seller_name: seller_name,
-      seller_phone: seller_phone,
-      seller_email: seller_email,
+      name: seller_name,
+      contact: seller_phone,
+      email: seller_email,
+      date: post_time,
       description: description,
       product_condition: product_condition,
     };
@@ -49,6 +51,8 @@ const BookingModal = ({ booking }) => {
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.error(err));
+
+    toast("This item is Booked!");
 
     form.reset();
   };

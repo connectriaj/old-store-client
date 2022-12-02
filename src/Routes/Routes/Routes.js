@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashBoardLayout from "../../Layout/DashBoardLayout";
 import Main from "../../Layout/Main";
 import About from "../../Pages/About/About";
 import Login from "../../Pages/Authentications/Login/Login";
@@ -8,7 +9,8 @@ import Categories from "../../Pages/Categories/Categories";
 import CatOne from "../../Pages/Categories/CatOne/CatOne";
 import CatThree from "../../Pages/Categories/CatThree/CatThree";
 import CatTwo from "../../Pages/Categories/CatTwo/CatTwo";
-import Dashboard from "../../Pages/Dashboard/Dashboard";
+import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import Home from "../../Pages/Home/Home/Home";
 import OrderForm from "../../Pages/OrderForm/OrderForm";
 import Products from "../../Pages/Products/Products";
@@ -83,11 +85,16 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-      element: <Dashboard></Dashboard>,
-      children: [
-          {
-            
-        }
-    ]
+    element: (
+      <PrivateRoute>
+        <DashBoardLayout></DashBoardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "/dashboard",
+        element: <MyOrders></MyOrders>,
+      },
+    ],
   },
 ]);
