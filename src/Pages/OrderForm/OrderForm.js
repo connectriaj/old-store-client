@@ -33,7 +33,7 @@ const OrderForm = () => {
       post_time: time,
       seller_phone: phone,
     };
-    fetch(`http://localhost:5000/products`, {
+    fetch(`https://old-store-server.vercel.app/products`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -7,7 +7,7 @@ const MyOrders = () => {
   const { user } = useContext(AuthContext);
   const [productDelete, setProductDelete] = useState([]);
 
-  const url = `http://localhost:5000/orders?email=${user.email}`;
+  const url = `https://old-store-server.vercel.app/orders?email=${user.email}`;
   const { data: orders = [] } = useQuery({
     queryKey: ["orders", user?.email],
     queryFn: async () => {
@@ -22,7 +22,7 @@ const MyOrders = () => {
       "Are you sure, you want to delete this item?"
     );
     if (proceed) {
-      fetch(`http://localhost:5000/orders/${id}`, {
+      fetch(`https://old-store-server.vercel.app/orders/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

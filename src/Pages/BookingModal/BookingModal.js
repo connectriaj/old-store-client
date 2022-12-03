@@ -40,7 +40,7 @@ const BookingModal = ({ booking }) => {
       product_condition: product_condition,
     };
 
-    fetch(`http://localhost:5000/orders`, {
+    fetch(`https://old-store-server.vercel.app/orders`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

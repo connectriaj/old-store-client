@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products></Products>,
-        loader: () => fetch(`http://localhost:5000/products`),
+        loader: () => fetch(`https://old-store-server.vercel.app/products`),
       },
       {
         path: "/cat1",
@@ -58,7 +58,7 @@ export const router = createBrowserRouter([
             <CatOne></CatOne>,
           </PrivateRoute>
         ),
-        loader: () => fetch(`http://localhost:5000/product/1`),
+        loader: () => fetch(`https://old-store-server.vercel.app/product/1`),
       },
       {
         path: "cat2",
@@ -67,7 +67,7 @@ export const router = createBrowserRouter([
             <CatTwo></CatTwo>
           </PrivateRoute>
         ),
-        loader: () => fetch(`http://localhost:5000/product/2`),
+        loader: () => fetch(`https://old-store-server.vercel.app/product/2`),
       },
       {
         path: "cat3",
@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
             <CatThree></CatThree>
           </PrivateRoute>
         ),
-        loader: () => fetch(`http://localhost:5000/product/3`),
+        loader: () => fetch(`https://old-store-server.vercel.app/product/3`),
       },
     ],
   },
@@ -95,7 +95,7 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/orderForm",
         element: <OrderForm></OrderForm>,
-        loader: () => fetch(`http://localhost:5000/products`),
+        loader: () => fetch(`https://old-store-server.vercel.app/products`),
       },
       {
         path: "/dashboard/myWishList",
