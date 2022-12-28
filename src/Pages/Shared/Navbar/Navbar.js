@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../../components/contexts/AuthProvider";
-import { FaUser } from "react-icons/fa";
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../components/contexts/AuthProvider';
+import { FaUser } from 'react-icons/fa';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -11,15 +11,8 @@ const Navbar = () => {
       <li>
         <Link to="/">Home</Link>
       </li>
-
-      <li>
-        <Link to="/categories">Categories</Link>
-      </li>
       <li>
         <Link to="/products">All Products</Link>
-      </li>
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
       </li>
 
       <li>
@@ -28,9 +21,11 @@ const Navbar = () => {
       <li>
         <Link to="/about">About Us</Link>
       </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
+      {user && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
     </React.Fragment>
   );
 
@@ -66,7 +61,7 @@ const Navbar = () => {
                 </li>
               ) : (
                 <li>
-                  <Link to="/signup">Sign Up</Link>
+                  <Link to="/login">Login</Link>
                 </li>
               )}
             </ul>
@@ -87,7 +82,7 @@ const Navbar = () => {
               </li>
             ) : (
               <li>
-                <Link to="/signup">Sign Up</Link>
+                <Link to="/login">Login</Link>
               </li>
             )}
             {user?.photoURL ? (

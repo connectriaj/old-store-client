@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import banner from "../../../assets/images/banner.png";
 
 const Banner = () => {
@@ -22,9 +23,9 @@ const Banner = () => {
             to compare mobile prices and sell your old or unwanted smartphone to
             someone who wants it
           </p>
-          <button className="btn btn-primary text-white bg-gradient-to-r from-primary to-info">
+          <Link to='/products'><button className="btn btn-primary text-white bg-gradient-to-r from-primary to-info">
             Explore Now
-          </button>
+          </button></Link>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const AdCard = () => {
   return (
@@ -12,14 +13,18 @@ const AdCard = () => {
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">Handset</h2>
+            <h2 className="card-title">iphone</h2>
             <p>
               A mobile phone is a wireless handheld device that allows users to
               make and receive calls. While the earliest generation of mobile
               phones could only make and receive calls, today's mobile phones do
               a lot more
             </p>
-            <div className="card-actions justify-end"></div>
+            <div className="card-actions justify-end">
+              <Link to="/categories">
+                <button className="btn btn-sm btn-info">Show More</button>
+              </Link>
+            </div>
           </div>
         </div>
         <div className="card  bg-base-100 shadow-xl image-full lg:px-0 px-3">
@@ -30,14 +35,18 @@ const AdCard = () => {
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">Cat Phone</h2>
+            <h2 className="card-title">Samsung Phone</h2>
             <p>
               A mobile phone is a wireless handheld device that allows users to
               make and receive calls. While the earliest generation of mobile
               phones could only make and receive calls, today's mobile phones do
               a lot more
             </p>
-            <div className="card-actions justify-end"></div>
+            <div className="card-actions justify-end">
+              <Link to="/categories">
+                <button className="btn btn-sm btn-info">Show More</button>
+              </Link>
+            </div>
           </div>
         </div>
         <div className="card  bg-base-100 shadow-xl image-full lg:px-0 px-3">
@@ -48,14 +57,18 @@ const AdCard = () => {
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">Broken Phone</h2>
+            <h2 className="card-title">Oppo Phone</h2>
             <p>
               A mobile phone is a wireless handheld device that allows users to
               make and receive calls. While the earliest generation of mobile
               phones could only make and receive calls, today's mobile phones do
               a lot more
             </p>
-            <div className="card-actions justify-end"></div>
+            <div className="card-actions justify-end">
+              <Link to="/categories">
+                <button className="btn btn-sm btn-info">Show More</button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

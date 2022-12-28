@@ -1,87 +1,62 @@
-import { createBrowserRouter } from "react-router-dom";
-import DashBoardLayout from "../../Layout/DashBoardLayout";
-import Main from "../../Layout/Main";
-import About from "../../Pages/About/About";
-import Login from "../../Pages/Authentications/Login/Login";
-import SignUp from "../../Pages/Authentications/SignUp/SignUp";
-import Blog from "../../Pages/Blog/Blog";
-import Categories from "../../Pages/Categories/Categories";
-import CatOne from "../../Pages/Categories/CatOne/CatOne";
-import CatThree from "../../Pages/Categories/CatThree/CatThree";
-import CatTwo from "../../Pages/Categories/CatTwo/CatTwo";
-import MyWishList from "../../Pages/Dashboard/Dashboard/MyWishList/MyWishList";
-import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
-import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
-import Home from "../../Pages/Home/Home/Home";
-import OrderForm from "../../Pages/OrderForm/OrderForm";
-import Products from "../../Pages/Products/Products";
-import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import { createBrowserRouter } from 'react-router-dom';
+import DashBoardLayout from '../../Layout/DashBoardLayout';
+import Main from '../../Layout/Main';
+import PageNotFound from '../../Pages/404/404';
+import About from '../../Pages/About/About';
+import Login from '../../Pages/Authentications/Login/Login';
+import SignUp from '../../Pages/Authentications/SignUp/SignUp';
+import Blog from '../../Pages/Blog/Blog';
+import Categories from '../../Pages/Categories/Categories';
+import MyWishList from '../../Pages/Dashboard/Dashboard/MyWishList/MyWishList';
+import MyOrders from '../../Pages/Dashboard/MyOrders/MyOrders';
+import MyProducts from '../../Pages/Dashboard/MyProducts/MyProducts';
+import Home from '../../Pages/Home/Home/Home';
+import OrderForm from '../../Pages/OrderForm/OrderForm';
+import Products from '../../Pages/Products/Products';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Main></Main>,
     children: [
       {
-        path: "/",
+        path: '/',
         element: <Home></Home>,
       },
       {
-        path: "/categories",
-        element: <Categories></Categories>,
+        path: '/categories',
+        element: <Categories />,
       },
       {
-        path: "/blog",
+        path: '*',
+        element: <PageNotFound />,
+      },
+      {
+        path: '/blog',
         element: <Blog></Blog>,
       },
       {
-        path: "/about",
+        path: '/about',
         element: <About></About>,
       },
       {
-        path: "/login",
+        path: '/login',
         element: <Login></Login>,
       },
       {
-        path: "/signup",
+        path: '/signup',
         element: <SignUp></SignUp>,
       },
       {
-        path: "/products",
+        path: '/products',
         element: <Products></Products>,
-        loader: () => fetch(`https://old-store-server.vercel.app/products`),
-      },
-      {
-        path: "/cat1",
-        element: (
-          <PrivateRoute>
-            <CatOne></CatOne>,
-          </PrivateRoute>
-        ),
-        loader: () => fetch(`https://old-store-server.vercel.app/product/1`),
-      },
-      {
-        path: "cat2",
-        element: (
-          <PrivateRoute>
-            <CatTwo></CatTwo>
-          </PrivateRoute>
-        ),
-        loader: () => fetch(`https://old-store-server.vercel.app/product/2`),
-      },
-      {
-        path: "cat3",
-        element: (
-          <PrivateRoute>
-            <CatThree></CatThree>
-          </PrivateRoute>
-        ),
-        loader: () => fetch(`https://old-store-server.vercel.app/product/3`),
+        loader: () => fetch(`http://localhost:5000/products`),
       },
     ],
   },
   {
-    path: "/dashboard",
+    path: '/dashboard',
     element: (
       <PrivateRoute>
         <DashBoardLayout></DashBoardLayout>
@@ -89,20 +64,20 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/dashboard",
+        path: '/dashboard',
         element: <MyOrders></MyOrders>,
       },
       {
-        path: "/dashboard/orderForm",
+        path: '/dashboard/orderForm',
         element: <OrderForm></OrderForm>,
-        loader: () => fetch(`https://old-store-server.vercel.app/products`),
+        loader: () => fetch(`http://localhost:5000/products`),
       },
       {
-        path: "/dashboard/myWishList",
+        path: '/dashboard/myWishList',
         element: <MyWishList></MyWishList>,
       },
       {
-        path: "/dashboard/myProducts",
+        path: '/dashboard/myProducts',
         element: <MyProducts></MyProducts>,
       },
     ],

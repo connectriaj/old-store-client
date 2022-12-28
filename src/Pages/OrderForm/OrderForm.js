@@ -1,8 +1,8 @@
-import { data } from "autoprefixer";
-import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import { AuthContext } from "../../components/contexts/AuthProvider";
+import { data } from 'autoprefixer';
+import React, { useContext } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import { AuthContext } from '../../components/contexts/AuthProvider';
 
 const OrderForm = () => {
   const { user } = useContext(AuthContext);
@@ -33,10 +33,10 @@ const OrderForm = () => {
       post_time: time,
       seller_phone: phone,
     };
-    fetch(`https://old-store-server.vercel.app/products`, {
-      method: "POST",
+    fetch(`http://localhost:5000/products`, {
+      method: 'POST',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify(addProducts),
     })
@@ -44,7 +44,7 @@ const OrderForm = () => {
       .then((data) => {
         if (data.acknowledged) {
           form.reset();
-          toast("Product added successfully!");
+          toast.success('Product added successfully!');
         }
       })
       .catch((err) => console.error(err));

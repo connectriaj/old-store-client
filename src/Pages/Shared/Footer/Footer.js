@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <section className="lg:mt-20 bg-slate-700  lg:py-10 text-white rounded">
+    <section className=" bg-slate-700 text-white w-full lg:mt-20">
       <footer className="footer footer-center p-10">
         <div className="grid grid-flow-col gap-4">
           <Link to="/" className="link link-hover">
